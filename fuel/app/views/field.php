@@ -185,6 +185,7 @@
 		width: 100%;
 	}
 </style>
+
 <?php $cemeteryData = explode(',', $GameData->cemetery);?>
 <?php $exclusionData = explode(',', $GameData->exclusion);?>
 
@@ -202,44 +203,9 @@
 <?php //モンスター置き場 ?>
 <div id="monsters">
 <?php foreach(explode(',', $GameData->monster) as $monster): ?>
-	<?php switch((int)($monster/10)):
-		case 1: ?>
-			<?= Asset::img( 'monster/'.$monster.'.png',
-				array('id'=>'monster1_img')
-			) ?>
-			<?php break; ?>
-		<?php case 3: ?>
-			<?= Asset::img( 'monster/'.$monster.'.png',
-				array('id'=>'monster3_img')
-			) ?>
-			<?php break; ?>
-		<?php case 10: ?>
-			<?= Asset::img( 'monster/'.$monster.'.png',
-				array('id'=>'monster10_img')
-			) ?>
-			<?php break; ?>
-		<?php case 30: ?>
-			<?= Asset::img( 'monster/'.$monster.'.png',
-				array('id'=>'monster30_img')
-			) ?>
-			<?php break; ?>
-		<?php case 100: ?>
-			<?= Asset::img( 'monster/'.$monster.'.png',
-				array('id'=>'monster100_img')
-			) ?>
-			<?php break; ?>
-		<?php case 300: ?>
-			<?= Asset::img( 'monster/'.$monster.'.png',
-				array('id'=>'monster300_img')
-			) ?>
-			<?php break; ?>
-		<?php case 1000: ?>
-			<?= Asset::img( 'monster/'.$monster.'.png',
-				array('id'=>'monster1000_img')
-			) ?>
-			<?php break; ?>
-	<?php endswitch; ?>
-
+	<?= Asset::img( 'monster/'.$monster.'.png',
+		array('id'=>'monster'.(int)($monster/10).'_img')
+	) ?>
 <?php endforeach; ?>
 </div>
 
@@ -270,7 +236,7 @@
 
 			var afterImg = "http://esmile-sys.sakura.ne.jp/Shephy/gojo/public/assets/img/card/" + getValue + ".png";
 
-			document.getElementById("popup_card_image").src = afterImg;
+			document.getElementById("hand_card_image").src = afterImg;
 			
 			document.getElementById("value_strage").value = getValue;
 		});
@@ -297,7 +263,8 @@
 		<td width="76%"></td>
 		<td width="10%">
 			<p>
-				<a class="modal_btn cemetery">
+				<?php $cemetery_counter = explode(',', $GameData->cemetery);?>
+				<a id="cemetery" class="modal_btn cemetery " value="<?= count($cemetery_counter) ?>">
 					<?= Asset::img('admin/cemetery.png',
 							array('id'=>'cemetery_img')
 					) ?>
@@ -318,6 +285,19 @@
 	</tr>
 </table>
 
+<script type="text/javascript">
+	$("#cemetery").click(function(){
+		// valueの取得	
+		var value = $("#cemetery").attr('value');
+		
+		var getWidth = $("#cemetery_list").attr('value');
+
+		var width =(getWidth * value) + "px";
+		
+		$('#cemetery_list').css('width',width);
+	});
+</script>
+
 <?php
 /*
  * ポップアップの呼び出し
@@ -326,5 +306,5 @@
  * 'value' => 引き渡しデータ
  */ ?>
 <?= View::forge('popup/wrap', array('name' => 'hand', 'size' => 'normal')); ?>
-<?= View::forge('popup/wrap', array('name' => 'cemetery', 'size' => 'small', 'popup_data' => $cemeteryData)); ?>
+<?= View::forge('popup/wrap', array('name' => 'cemetery', 'size' => 'big', 'popup_data' => $cemeteryData)); ?>
 <?= View::forge('popup/wrap', array('name' => 'exclusion', 'size' => 'small', 'popup_data' => $exclusionData)); ?>

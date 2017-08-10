@@ -1,5 +1,5 @@
 <style type="text/css">
-	#popup_card_image{
+	#hand_card_image{
 		position: absolute;
 		top: 3%;
 		left: 3%;
@@ -7,7 +7,7 @@
 	}
 </style>
 <div>
-	<img id="popup_card_image" src="">
+	<img id="hand_card_image" src="">
 </div>
 
 <a href="" onclick="document.use_button.submit();return false;">使う</a>
