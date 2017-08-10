@@ -1,16 +1,21 @@
 <?php
 
-class Model_User extends Model_Base_Db
+class Model_Field extends Model_Base_Db
 {
-	protected static $_table_name = 'user';     // テーブル名がモデル名の複数形なら省略可
+	protected static $_table_name = 'uGameData';     // テーブル名がモデル名の複数形なら省略可
 	protected static $_primariy = array('id');  // プライマリーキーがidなら省略可
 
 	//使用するフィールド名をセット
 	protected static $_properties = array(
 		'id',
-		'name',
-		'highScore',
-		'score',	
+		'delFlag',
+		'uId',
+		'monster',
+		'field',
+		'hand',
+		'deck',
+		'cemetery',
+		'exclusion',
 		'updated_at',
 		'created_at',
 	);

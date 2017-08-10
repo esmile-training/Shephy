@@ -8,9 +8,11 @@ class Controller_Base_Game extends Controller
 	{
 		//ユーザ認証
 		$this->view_data['user'] = $this->user_authentication();
-		$this->view_data['user']['developer'] = $this->check_developer($this->view_data['user']); 
+		//$this->view_data['user']['developer'] = $this->check_developer($this->view_data['user']); 
 		$this->view_data['user']['nowtime'] = $this->set_time($this->view_data['user']['developer'] ); 
 		
+		// Modelインスタンス化
+		$this->csv = new Model_Base_Csv();
 	}
 
 	private function user_authentication()
@@ -41,18 +43,18 @@ class Controller_Base_Game extends Controller
 		return $user;
 	}
 
-	private function check_developer($user)
-	{
-		if(!$user) return false;
-		
-		//開発者とデバッグ日時の設定
-		$developer = Model_Developer::find('first', array(
-			'where' => array(
-				'user_id' =>$user['id']
-			)
-		));
-		return (is_null($developer))? false : $developer;
-	}
+//	private function check_developer($user)
+//	{
+//		if(!$user) return false;
+//		
+//		//開発者とデバッグ日時の設定
+//		$developer = Model_Developer::find('first', array(
+//			'where' => array(
+//				'user_id' =>$user['id']
+//			)
+//		));
+//		return (is_null($developer))? false : $developer;
+//	}
 
 	private function set_time($developer)
 	{

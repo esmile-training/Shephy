@@ -1,35 +1,33 @@
 <?php //CSS  ?>
 <?= Asset::css("admin/screen_size_max.css"); ?>
 <style type="text/css">
-	#enemmy_img {
-		width: 150px;
+	#monster_img {
+		width: 75px;
 	}
-	.enemmy_list {
+	.monster_list {
 		border-collapse: collapse;
 	}
-	.enemmy_list td {
+	.monster_list td {
 		border:1px #FFF solid;
 		padding: 5px;
 	}
 </style>
 
 <?php //敵リスト ?>
-<table class="enemmy_list">
-	<?php foreach($enemmy_mst as $enemmy): ?>
+<table class="monster_list">
+	<?php foreach($monster_mst as $monster): ?>
 		<tr>
 			<td>
-				<?= $enemmy['id'] ?>
+				<?= (int)($monster['id']/10) ?>
 			</td>
 			<td>
-				<?= $enemmy['name'] ?>
+				<?= $monster['name'] ?>
 			</td>
 			<td style="">
-				<?= Asset::img(	'enemmy/'.$enemmy['id'].'.png',
-						array('id'=>'enemmy_img')	
+				<?= Asset::img( 'monster/'.$monster['id'].'.png',
+						array('id'=>'monster_img')
 				) ?>
 			</td>
 		</tr>
 	<?php endforeach; ?>
 </table>
-
-

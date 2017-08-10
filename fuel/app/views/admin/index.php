@@ -25,7 +25,10 @@
 		array('str' => 'ユーザ編集', 'url' => 'user_list')
 );?>
 <?= View::forge('admin/common/star_link',
-		array('str' => '魔物リスト', 'url' => 'ennemy_list')
+		array('str' => 'モンスターリスト', 'url' => 'monster_list')
+);?>
+<?= View::forge('admin/common/star_link',
+		array('str' => 'カードリスト', 'url' => 'card_list')
 );?>
 <?= View::forge('admin/common/star_link',
 		array('str' => 'スタッフロール', 'url' => 'staff')

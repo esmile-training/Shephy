@@ -1,21 +1,21 @@
-<?php //検索フォーム ?>
-<?= Form::open(array('action' => 'top/login', 'method' => 'post')); ?>
+<?php //ログインフォーム ?>
+<?= Form::open(array('action' => 'top/logIn', 'method' => 'post')); ?>
 	<table>
 		<tr>
-			<td>名前</td>
+			<td>UserName</td>
 			<td>
 				<?= Form::input('name',  '', array(	'style' => 'padding:3px;' )); ?>
 			</td>
 		</tr>
 		<tr>
-			<td>合言葉</td>
+			<td>Password</td>
 			<td>
 				<?= Form::input('password', '', array( 'type'=>'password', 'style' => 'padding:3px;')); ?>
 			</td>
 		</tr>
 	</table>
 	<div>
-		<?= Form::button(null, 'ログイン', array('type' => 'submit', 'style' => 'padding: 2px;')); ?>
+		<?= Form::button(null, 'Log in', array('type' => 'submit', 'style' => 'padding: 2px;')); ?>
 	</div>
 <?=  Form::close(); ?>
 

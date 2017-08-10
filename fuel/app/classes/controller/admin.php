@@ -10,7 +10,7 @@ class Controller_Admin extends Controller_Base_Admin
 	}
 
 	/*
-	 * キャラ一覧
+	 * ユーザー一覧
 	 */
 	public function action_user_list( )
 	{
@@ -50,14 +50,12 @@ class Controller_Admin extends Controller_Base_Admin
 		);
 		Pagination::set_config($config);
 
-
 		//ユーザデータ取得
 		$this->view_data['user_list'] = Model_User::find('all', array(
 			'where' => $where,
 			'limit' => Pagination::get('per_page'),
 			'offset' => Pagination::get('offset'),
 			'order_by' => array('id' => 'asc'),
-			
 		));
 
 		//ビュー表示
@@ -112,21 +110,31 @@ class Controller_Admin extends Controller_Base_Admin
 		//リダイレクト
 		Response::redirect('admin/user_list');
 	}
-		
 
 	/*
-	 * 魔物図鑑
+	 * モンスター図鑑
 	 */
-	public function action_ennemy_list()
+	public function action_monster_list()
 	{
-		//魔物データ取得
-		$this->view_data['enemmy_mst'] = $this->csv->getAll('/enemy/mst');
+		//モンスターデータ取得
+		$this->view_data['monster_mst'] = $this->csv->getAll('/monster/mst');
 
 		//ビュー表示
-		return View_Wrap::admin('enemmy_list', $this->view_data);
+		return View_Wrap::admin('monster_list', $this->view_data);
 	}
 	
-	
+	/*
+	 * カード図鑑
+	 */
+	public function action_card_list()
+	{
+		//カードデータ取得
+		$this->view_data['card_mst'] = $this->csv->getAll('/card/mst');
+
+		//ビュー表示
+		return View_Wrap::admin('card_list', $this->view_data);
+	}
+
 	/*
 	 * ポップアップ
 	 */	
